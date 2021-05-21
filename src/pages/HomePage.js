@@ -5,6 +5,7 @@ import Header from "../components/header/Header";
 import FlightDetails from "../Modals/FlightDetails";
 import { Table } from "../components/table/Table";
 import { FightDetailsProvider } from "../context/OpenFightDetailsContext";
+import { ApiCallProvider } from "../context/ApiCallContext";
 
 const HomePage = () => {
   const [data, setData] = useState();
@@ -13,16 +14,18 @@ const HomePage = () => {
   //   console.log(data);
   return (
     <div>
-      <FightDetailsProvider>
-        <FlightDetails />
-        <Header />
-        <div className="mx-auto">
-          <div className="flex justify-end items-center my-2 w-full">
-            <Filters />
+      <ApiCallProvider>
+        <FightDetailsProvider>
+          <FlightDetails />
+          <Header />
+          <div className="mx-auto">
+            <div className="flex justify-end items-center my-2 w-full">
+              <Filters />
+            </div>
+            <Table />
           </div>
-          <Table />
-        </div>
-      </FightDetailsProvider>
+        </FightDetailsProvider>
+      </ApiCallProvider>
     </div>
   );
 };

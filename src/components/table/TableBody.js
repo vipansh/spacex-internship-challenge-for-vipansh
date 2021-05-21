@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
+import { ApiCallContext } from "../../context/ApiCallContext";
 import { FightDetailsContext } from "../../context/OpenFightDetailsContext";
 
-export const TableBody = ({ data }) => {
+export const TableBody = ({ allData }) => {
   const { valuesOfIsOpen, valuesOfData } = useContext(FightDetailsContext);
   const { flightData, setFlightData } = valuesOfData;
   const { open, setOpen } = valuesOfIsOpen;
 
-  
   return (
     <tbody className="bg-white divide-y divide-gray-200">
-      {data.map((data) => (
+      {allData.map((data) => (
         <tr
           key={data.flight_number}
           onClick={() => {
