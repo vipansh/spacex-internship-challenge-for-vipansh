@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FightDetailsContext } from "../../context/OpenFightDetailsContext";
 
 export const TableBody = ({ data }) => {
+  const { valuesOfIsOpen, valuesOfData } = useContext(FightDetailsContext);
+  const { flightData, setFlightData } = valuesOfData;
+  const { open, setOpen } = valuesOfIsOpen;
+
+  
   return (
     <tbody className="bg-white divide-y divide-gray-200">
       {data.map((data) => (
-        <tr key={data.flight_number}>
+        <tr
+          key={data.flight_number}
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
           <td className="px-6 py-4 whitespace-nowrap">
             <div className="text-sm text-gray-900">{data.flight_number}</div>
           </td>
