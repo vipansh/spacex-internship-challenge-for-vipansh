@@ -8,7 +8,7 @@ export const TableBody = ({ allData }) => {
       {allData.map((data, index) => (
         <tr
           className="cursor-pointer hover:bg-gray-100"
-          key={data.launch_date_local}
+          key={data.launch_date_local + index}
           onClick={() => {
             history.push(`?openModel=true&id=${data.flight_number}`);
           }}
