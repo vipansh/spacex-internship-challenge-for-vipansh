@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { formatDate } from "../../utli";
 
 export const TableBody = ({ allData }) => {
   let history = useHistory();
@@ -18,7 +19,7 @@ export const TableBody = ({ allData }) => {
           </td>
           <td className="px-6 py-4 whitespace-nowrap">
             <div className="text-sm text-gray-900">
-              {data.launch_date_local}
+              {formatDate(data.launch_date_local)}
             </div>
           </td>
           <td className="px-6 py-4 whitespace-nowrap">

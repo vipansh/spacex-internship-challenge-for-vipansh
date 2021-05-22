@@ -70,7 +70,7 @@ export default function FlightDetails() {
             <div className="inline-block p-4  bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all w-1/2 ">
               <div className="mt-4" ref={cancelButtonRef}>
                 {flightData ? (
-                  <div>
+                  <div className="text-sm">
                     <HeaderFightDetails
                       setOpen={setOpen}
                       imgSrc={flightData.links.mission_patch_small}

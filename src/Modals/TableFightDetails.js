@@ -1,4 +1,5 @@
 import React from "react";
+import { formatDate } from "../utli";
 import RowsFightDetails from "./RowsFightDetails";
 
 export const TableFightDetails = ({
@@ -18,7 +19,7 @@ export const TableFightDetails = ({
       <RowsFightDetails header="Rocket Name" value={rocketName} />
       <RowsFightDetails header="Manufacturer" value="Space X" />
       <RowsFightDetails header="Nationality" value="Space X" />
-      <RowsFightDetails header="Launch Date" value={launchData} />
+      <RowsFightDetails header="Launch Date" value={formatDate(launchData)} />
       <RowsFightDetails
         header="Payload Type"
         value={orbit.payloads[0].payload_type}

@@ -39,7 +39,7 @@ export function paginate(
   }
 
   // calculate start and end item indexes
-  let startIndex = ((currentPage - 1) * pageSize)+1;
+  let startIndex = (currentPage - 1) * pageSize + 1;
   let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
   // create an array of pages to ng-repeat in the pager control
@@ -59,4 +59,28 @@ export function paginate(
     endIndex: endIndex,
     pages: pages,
   };
+}
+
+export function formatDate(dateString) {
+  let date = new Date(dateString);
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let dt = date.getDate();
+  let hr = date.getHours();
+  let minute = date.getMinutes();
+
+  if (dt < 10) {
+    dt = "0" + dt;
+  }
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (hr < 10) {
+    hr = "0" + hr;
+  }
+  if (minute < 10) {
+    minute = "0" + minute;
+  }
+
+  return year + "-" + month + "-" + dt + " at " + hr + ":" + minute;
 }
