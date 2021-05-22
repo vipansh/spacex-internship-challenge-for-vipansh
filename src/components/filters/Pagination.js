@@ -44,7 +44,20 @@ export default function Pagination() {
           >
             <span className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
               <span className="sr-only">Previous</span>
-              <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
+              <ChevronLeftIcon
+                className={
+                  "h-5 w-5 " +
+                  (paginationNo === 1
+                    ? "cursor-not-allowed"
+                    : " cursor-pointer")
+                }
+                aria-hidden="true"
+                onClick={() => {
+                  if (paginationNo !== 1) {
+                    paginateChange(paginationNo - 1);
+                  }
+                }}
+              />
             </span>
 
             {firstGroup.map((v, i) => {
@@ -57,7 +70,7 @@ export default function Pagination() {
                   aria-current="page"
                   className={
                     (v === paginationNo ? activeNumber : defaultNumber) +
-                    "relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                    "relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer"
                   }
                 >
                   {v}
@@ -78,7 +91,7 @@ export default function Pagination() {
                   aria-current="page"
                   className={
                     (v === paginationNo ? activeNumber : defaultNumber) +
-                    "relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                    "relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer"
                   }
                 >
                   {v}
@@ -88,7 +101,20 @@ export default function Pagination() {
 
             <span className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
               <span className="sr-only">Next</span>
-              <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+              <ChevronRightIcon
+                className={
+                  "h-5 w-5 " +
+                  (paginationNo === 11
+                    ? "cursor-not-allowed"
+                    : "cursor-pointer")
+                }
+                aria-hidden="true"
+                onClick={() => {
+                  if (paginationNo !== 11) {
+                    paginateChange(paginationNo + 1);
+                  }
+                }}
+              />
             </span>
           </nav>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export const ApiCallContext = React.createContext();
 
@@ -9,13 +9,13 @@ export function ApiCallProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [paginationNo, setPaginationNo] = useState(2);
 
-  React.useEffect(async () => {
+  useEffect(async () => {
     setLoading(true);
     fetch(`https://space-x-api-iota.vercel.app/api/launches`)
       .then((response) => response.json())
       .then((data) => {
         setAPIData(data.data);
-        setAllData(data.data);
+        setAllData(data.data.slice(0, 10));
         console.log(data);
       })
       .then(() => {
@@ -24,7 +24,6 @@ export function ApiCallProvider({ children }) {
       .catch((err) => {
         console.error(err);
       });
-    paginateChange(1);
   }, []);
 
   function paginateChange(page_number) {
