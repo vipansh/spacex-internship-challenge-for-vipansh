@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 export const ApiCallContext = React.createContext();
 
 export function ApiCallProvider({ children }) {
-  const [APIData, setAPIData] = useState([]);
+  const [APIData, setAPIData] = useState();
   const [copyOfApi, setCopyOfApi] = useState([]);
-  const [allData, setAllData] = useState([]);
+  const [allData, setAllData] = useState();
   const [loading, setLoading] = useState(false);
   const [paginationNo, setPaginationNo] = useState(1);
 
@@ -36,11 +36,8 @@ export function ApiCallProvider({ children }) {
     console.log(filterBy);
     let filteredArr = [];
     switch (filterBy) {
-      case "All Launches":
-        filteredArr = [...APIData];
-        break;
       case "Upcoming Launches":
-        filteredArr = APIData.filter((x) => (x.launch_success = null));
+        filteredArr = [];
         break;
       case "Successful Launches":
         filteredArr = APIData.filter((x) => x.launch_success);
@@ -61,6 +58,7 @@ export function ApiCallProvider({ children }) {
       value={{
         allData: allData,
         filterApi: filterApi,
+        totalNo: copyOfApi.length,
         isLoading: { loading, setLoading },
         pageNumbers: { paginationNo, setPaginationNo },
         paginateChange: paginateChange,

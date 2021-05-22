@@ -36,7 +36,7 @@ export const Table = () => {
                   })}
                 </tr>
               </thead>
-              {allData.length > 0 ? (
+              {allData ? (
                 <TableBody allData={allData} />
               ) : (
                 <tbody>

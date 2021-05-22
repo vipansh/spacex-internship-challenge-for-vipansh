@@ -1,14 +1,14 @@
 import React from "react";
 import { Fragment, useRef, useState, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { FightDetailsContext } from "../context/OpenFightDetailsContext";
 import { HeaderFightDetails } from "./HeaderFightDetails";
 import { TextFightDetails } from "./TextFightDetails";
 import { TableFightDetails } from "./TableFightDetails";
 import { data } from "autoprefixer";
+import { FlightDetailsContext } from "../context/OpenFlightDetailsContext";
 
 export default function FlightDetails() {
-  const { valuesOfIsOpen, valuesOfData } = useContext(FightDetailsContext);
+  const { valuesOfIsOpen, valuesOfData } = useContext(FlightDetailsContext);
   const { flightData, setFlightData } = valuesOfData;
   const { open, setOpen } = valuesOfIsOpen;
 

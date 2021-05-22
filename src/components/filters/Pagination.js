@@ -1,18 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { ApiCallContext } from "../../context/ApiCallContext";
+import { paginate } from "../../utli";
 
 export default function Pagination() {
-  const { paginateChange, pageNumbers } = useContext(ApiCallContext);
+  const { paginateChange, pageNumbers, totalNo } = useContext(ApiCallContext);
+
   const { paginationNo, setPaginationNo } = pageNumbers;
-  const pageNumbersArr = [];
+  let peginationData;
+  peginationData = paginate(totalNo, paginationNo, 10, 5);
 
-  for (let i = 1; i <= 11; i++) {
-    pageNumbersArr.push(i);
-  }
-  const firstGroup = [1, 2, 3];
-
-  const secondGroup = [9, 10, 11];
+  useEffect(() => {
+    console.log(peginationData);
+  }, [paginationNo]);
 
   const activeNumber = "z-10 bg-indigo-50 border-indigo-500 text-indigo-600";
   const defaultNumber =
@@ -31,9 +31,11 @@ export default function Pagination() {
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">{paginationNo * 10 - 9}</span>{" "}
-            to <span className="font-medium">{paginationNo * 10}</span> of{" "}
-            <span className="font-medium">110</span> results
+            Showing{" "}
+            <span className="font-medium">{peginationData.startIndex}</span> to{" "}
+            <span className="font-medium">{peginationData.endIndex}</span> of{" "}
+            <span className="font-medium">{peginationData.totalItems}</span>{" "}
+            results
           </p>
         </div>
         <div>
@@ -59,28 +61,7 @@ export default function Pagination() {
               />
             </span>
 
-            {firstGroup.map((v, i) => {
-              return (
-                <span
-                  key={i}
-                  onClick={() => {
-                    paginateChange(v);
-                  }}
-                  aria-current="page"
-                  className={
-                    (v === paginationNo ? activeNumber : defaultNumber) +
-                    "relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer"
-                  }
-                >
-                  {v}
-                </span>
-              );
-            })}
-
-            <span className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
-              ...
-            </span>
-            {secondGroup.map((v, i) => {
+            {peginationData.pages.map((v, i) => {
               return (
                 <span
                   key={i}

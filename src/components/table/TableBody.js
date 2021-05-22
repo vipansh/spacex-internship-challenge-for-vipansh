@@ -1,21 +1,16 @@
-import React, { useContext } from "react";
-import { ApiCallContext } from "../../context/ApiCallContext";
-import { FightDetailsContext } from "../../context/OpenFightDetailsContext";
+import React from "react";
+import { useHistory } from "react-router-dom";
 
 export const TableBody = ({ allData }) => {
-  const { valuesOfIsOpen, valuesOfData, apiCallToFlightData } =
-    useContext(FightDetailsContext);
-  const { flightData, setFlightData } = valuesOfData;
-  const { open, setOpen } = valuesOfIsOpen;
-
+  let history = useHistory();
   return (
     <tbody className="bg-white divide-y divide-gray-200">
-      {allData.map((data) => (
+      {allData.map((data, index) => (
         <tr
-          key={data.flight_number}
+          className="cursor-pointer hover:bg-gray-100"
+          key={data.launch_date_local}
           onClick={() => {
-            setOpen(true);
-            apiCallToFlightData(data.flight_number);
+            history.push(`?openModel=true&id=${data.flight_number}`);
           }}
         >
           <td className="px-6 py-4 whitespace-nowrap">
@@ -39,7 +34,6 @@ export const TableBody = ({ allData }) => {
               {data.rocket.second_stage.payloads[0].orbit}
             </div>
           </td>
-
           {data.launch_success ? (
             <td className="px-6 py-4 whitespace-nowrap">
               <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -53,7 +47,6 @@ export const TableBody = ({ allData }) => {
               </span>
             </td>
           )}
-
           <td className="px-6 py-4 whitespace-nowrap">
             <div className="text-sm text-gray-900">
               {data.rocket.rocket_name}
