@@ -1,12 +1,5 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import FlightDetails from "./Modals/FlightDetails";
 import HomePage from "./pages/HomePage";
 
 function App() {

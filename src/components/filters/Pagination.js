@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { ApiCallContext } from "../../context/ApiCallContext";
 import { paginate } from "../../utli";
@@ -6,13 +6,9 @@ import { paginate } from "../../utli";
 export default function Pagination() {
   const { paginateChange, pageNumbers, totalNo } = useContext(ApiCallContext);
 
-  const { paginationNo, setPaginationNo } = pageNumbers;
+  const { paginationNo } = pageNumbers;
   let peginationData;
   peginationData = paginate(totalNo, paginationNo, 10, 5);
-
-  useEffect(() => {
-    console.log(peginationData);
-  }, [paginationNo]);
 
   const activeNumber = "z-10 bg-indigo-50 border-indigo-500 text-indigo-600";
   const defaultNumber =

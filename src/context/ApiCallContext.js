@@ -9,7 +9,7 @@ export function ApiCallProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [paginationNo, setPaginationNo] = useState(1);
 
-  useEffect(async () => {
+  useEffect(() => {
     setLoading(true);
     fetch(`https://space-x-api-iota.vercel.app/api/launches`)
       .then((response) => response.json())
@@ -33,7 +33,6 @@ export function ApiCallProvider({ children }) {
   }
 
   function filterApi(filterBy) {
-    console.log(filterBy);
     let filteredArr = [];
     switch (filterBy) {
       case "Upcoming Launches":
@@ -50,7 +49,6 @@ export function ApiCallProvider({ children }) {
     }
     setCopyOfApi(filteredArr);
     paginateChange(1, filteredArr);
-    console.log(filteredArr);
   }
 
   return (

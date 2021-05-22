@@ -10,7 +10,6 @@ export const TableFightDetails = ({
   launchSite,
   rocketName,
 }) => {
-  console.log(orbit.payloads[0]);
   return (
     <div>
       <RowsFightDetails header="Flight Number" value={flightNumber} />

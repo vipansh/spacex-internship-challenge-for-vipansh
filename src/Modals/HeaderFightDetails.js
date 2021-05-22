@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import nasa from "../assets/nasa.svg";
 import wiki from "../assets/wiki.svg";
 import youtube from "../assets/youtube.svg";
@@ -13,10 +14,12 @@ export const HeaderFightDetails = ({
   articleLink,
   status,
 }) => {
+  let history = useHistory();
+
   return (
     <div className="flex justify-between">
       {/* image plus name plus links */}
-      <div className="flex">
+      <div className="flex justify-between ">
         <div id="image">
           <img className="h-20" src={imgSrc} alt="img" />
         </div>
@@ -25,13 +28,13 @@ export const HeaderFightDetails = ({
           <div>{rocketName}</div>
           <div className="flex">
             <a href={articleLink}>
-              <img src={nasa} />
+              <img src={nasa} alt="nasa" />
             </a>
             <a href={wikiLink}>
-              <img src={wiki} />
+              <img src={wiki} alt="wiki" />
             </a>
             <a href={youtubeLink}>
-              <img src={youtube} />
+              <img src={youtube} alt="youTube" />
             </a>
           </div>
         </div>
@@ -57,7 +60,10 @@ export const HeaderFightDetails = ({
         <button
           type="button"
           className=" w-12  "
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            setOpen(false);
+            history.push("/");
+          }}
         >
           X
         </button>

@@ -4,15 +4,13 @@ import { Dialog, Transition } from "@headlessui/react";
 import { HeaderFightDetails } from "./HeaderFightDetails";
 import { TextFightDetails } from "./TextFightDetails";
 import { TableFightDetails } from "./TableFightDetails";
-import { data } from "autoprefixer";
 import { FlightDetailsContext } from "../context/OpenFlightDetailsContext";
-import { useHistory, useLocation, useParams } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 export default function FlightDetails() {
-  const { valuesOfIsOpen, valuesOfData, apiCallToFlightData } =
+  const { valuesOfData, apiCallToFlightData } =
     useContext(FlightDetailsContext);
-  const { flightData, setFlightData } = valuesOfData;
-  // const { open, setOpen } = valuesOfIsOpen;
+  const { flightData } = valuesOfData;
   const [open, setOpen] = useState(false);
 
   function useQuery() {
@@ -20,11 +18,9 @@ export default function FlightDetails() {
   }
   let history = useHistory();
   let query = useQuery();
-  console.log(query.get("id"), query.get("openModel"));
 
   useEffect(() => {
     if (query.get("openModel")) {
-      console.log("openinggg");
       setOpen(true);
       apiCallToFlightData(query.get("id"));
     } else {

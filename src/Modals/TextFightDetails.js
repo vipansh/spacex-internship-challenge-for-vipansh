@@ -1,7 +1,6 @@
 import React from "react";
 
 export const TextFightDetails = ({ details, wikiLink }) => {
-  console.log(details);
   return (
     <div>
       <p className="my-2">
