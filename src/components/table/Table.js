@@ -3,8 +3,7 @@ import { ApiCallContext } from "../../context/ApiCallContext";
 import { TableBody } from "./TableBody";
 
 export const Table = () => {
-  const { allData, filterBy, isLoading } = useContext(ApiCallContext);
-  const { filters, setFilters } = filterBy;
+  const { allData, isLoading } = useContext(ApiCallContext);
   const { loading, setLoading } = isLoading;
   const tableHeader = [
     "No:",

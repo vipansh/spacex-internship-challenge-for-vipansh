@@ -1,17 +1,20 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React from "react";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ApiCallContext } from "../../context/ApiCallContext";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Filter() {
+  const { filterApi } = useContext(ApiCallContext);
+
   const launchesFilterList = [
     "All Launches",
-    " Upcoming Launches",
+    "Upcoming Launches",
     "Successful Launches",
     "Failed Launches",
   ];
@@ -50,6 +53,7 @@ export default function Filter() {
                     <Menu.Item
                       key={filterWord}
                       onClick={() => {
+                        filterApi(filterWord);
                         setFilterBy(filterWord);
                       }}
                     >
