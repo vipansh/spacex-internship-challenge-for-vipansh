@@ -1,13 +1,15 @@
 import React from "react";
 
-export const TextFightDetails = () => {
+export const TextFightDetails = ({ details, wikiLink }) => {
+  console.log(details);
   return (
     <div>
-      CRS-1 successful, but the secondary payload was inserted into abnormally
-      low orbit and lost due to Falcon 9 boost stage engine failure, ISS
-      visiting vehicle safety rules, and the primary payload owner's contractual
-      right to decline a second ignition of the second stage under some
-      condition. <a>Wikipedia</a>
+      <p className="my-2">
+        {details}.
+        <a className="text-blue-500 cursor-pointer mx-2" href={wikiLink}>
+          Wikipedia
+        </a>
+      </p>
     </div>
   );
 };

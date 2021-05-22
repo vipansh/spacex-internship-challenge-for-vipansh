@@ -16,7 +16,6 @@ export function ApiCallProvider({ children }) {
       .then((data) => {
         setAPIData(data.data);
         setAllData(data.data.slice(0, 10));
-        console.log(data);
       })
       .then(() => {
         setLoading(false);

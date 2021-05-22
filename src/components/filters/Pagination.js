@@ -13,7 +13,6 @@ export default function Pagination() {
   const firstGroup = [1, 2, 3];
 
   const secondGroup = [9, 10, 11];
-  console.log(firstGroup, secondGroup);
 
   const activeNumber = "z-10 bg-indigo-50 border-indigo-500 text-indigo-600";
   const defaultNumber =

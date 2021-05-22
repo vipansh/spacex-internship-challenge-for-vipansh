@@ -3,11 +3,11 @@ import { ApiCallContext } from "../../context/ApiCallContext";
 import { FightDetailsContext } from "../../context/OpenFightDetailsContext";
 
 export const TableBody = ({ allData }) => {
-  const { valuesOfIsOpen, valuesOfData } = useContext(FightDetailsContext);
+  const { valuesOfIsOpen, valuesOfData, apiCallToFlightData } =
+    useContext(FightDetailsContext);
   const { flightData, setFlightData } = valuesOfData;
   const { open, setOpen } = valuesOfIsOpen;
 
-  console.log(allData);
   return (
     <tbody className="bg-white divide-y divide-gray-200">
       {allData.map((data) => (
@@ -15,6 +15,7 @@ export const TableBody = ({ allData }) => {
           key={data.flight_number}
           onClick={() => {
             setOpen(true);
+            apiCallToFlightData(data.flight_number);
           }}
         >
           <td className="px-6 py-4 whitespace-nowrap">
