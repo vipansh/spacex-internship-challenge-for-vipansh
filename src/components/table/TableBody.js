@@ -7,6 +7,7 @@ export const TableBody = ({ allData }) => {
   const { flightData, setFlightData } = valuesOfData;
   const { open, setOpen } = valuesOfIsOpen;
 
+  console.log(allData);
   return (
     <tbody className="bg-white divide-y divide-gray-200">
       {allData.map((data) => (

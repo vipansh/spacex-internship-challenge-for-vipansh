@@ -6,6 +6,7 @@ import FlightDetails from "../Modals/FlightDetails";
 import { Table } from "../components/table/Table";
 import { FightDetailsProvider } from "../context/OpenFightDetailsContext";
 import { ApiCallProvider } from "../context/ApiCallContext";
+import Pagination from "../components/filters/Pagination";
 
 const HomePage = () => {
   const [data, setData] = useState();
@@ -23,6 +24,7 @@ const HomePage = () => {
               <Filters />
             </div>
             <Table />
+            <Pagination />
           </div>
         </FightDetailsProvider>
       </ApiCallProvider>
