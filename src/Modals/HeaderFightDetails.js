@@ -17,15 +17,15 @@ export const HeaderFightDetails = ({
   let history = useHistory();
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between text-xl ">
       {/* image plus name plus links */}
       <div className="flex justify-between ">
-        <div id="image">
+        <div id="image mx-4">
           <img className="h-20" src={imgSrc} alt="img" />
         </div>
-        <div id="name_links">
-          <div>{missionName}</div>
-          <div>{rocketName}</div>
+        <div id="name_links" className="mx-4">
+          <div className="font-bold">{missionName}</div>
+          <div className="text-base">{rocketName}</div>
           <div className="flex">
             <a href={articleLink}>
               <img src={nasa} alt="nasa" />
