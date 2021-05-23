@@ -10,20 +10,20 @@ export function ApiCallProvider({ children }) {
   const [paginationNo, setPaginationNo] = useState(1);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`https://space-x-api-iota.vercel.app/api/launches`)
-      .then((response) => response.json())
-      .then((data) => {
-        setAPIData(data.data);
-        setCopyOfApi(data.data);
-        setAllData(data.data.slice(0, 10));
-      })
-      .then(() => {
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    (async () => {
+      try {
+        const response = await fetch(
+          `https://space-x-api-iota.vercel.app/api/launches`
+        );
+        const json = await response.json();
+        setLoading(true);
+        setAPIData(json.data);
+        setCopyOfApi(json.data);
+        setAllData(json.data.slice(0, 10));
+      } catch (e) {
+        console.error(e);
+      }
+    })();
   }, []);
 
   function paginateChange(page_number, ar = copyOfApi) {
