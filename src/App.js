@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import { ApiCallProvider } from "./context/ApiCallContext";
 import HomePage from "./pages/HomePage";
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
     <div className="mx-24 items-center ">
       <Router>
         <Switch>
-          <Route path="/" component={HomePage} />
+          <ApiCallProvider>
+            <Route path="/" component={HomePage} />
+          </ApiCallProvider>
         </Switch>
       </Router>
     </div>
