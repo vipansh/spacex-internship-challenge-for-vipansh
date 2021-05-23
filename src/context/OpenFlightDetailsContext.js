@@ -5,21 +5,16 @@ export const FlightDetailsContext = React.createContext();
 export function FlightDetailsProvider({ children }) {
   const [flightData, setFlightData] = useState();
 
-  const apiCallToFlightData = (flightNo = 1) => {
-    if (flightData) {
-      if (flightNo === flightData.launch_no) {
-        console.log("Same Data");
-        return;
-      }
+  const apiCallToFlightData = async (flightNo = 1) => {
+    try {
+      const response = await fetch(
+        `https://space-x-api-iota.vercel.app/api/launches/${flightNo}`
+      );
+      const json = await response.json();
+      setFlightData(json.data);
+    } catch (e) {
+      console.error(e);
     }
-    fetch(`https://space-x-api-iota.vercel.app/api/launches/${flightNo}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setFlightData(data.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
   };
 
   return (

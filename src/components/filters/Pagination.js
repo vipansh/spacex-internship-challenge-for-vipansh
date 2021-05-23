@@ -7,8 +7,8 @@ export default function Pagination() {
   const { paginateChange, pageNumbers, totalNo } = useContext(ApiCallContext);
 
   const { paginationNo } = pageNumbers;
-  let peginationData;
-  peginationData = paginate(totalNo, paginationNo, 10, 5);
+  let paginationData;
+  paginationData = paginate(totalNo, paginationNo, 10, 5);
 
   const activeNumber = "z-10 bg-indigo-50 border-indigo-500 text-indigo-600";
   const defaultNumber =
@@ -28,9 +28,9 @@ export default function Pagination() {
         <div>
           <p className="text-sm text-gray-700">
             Showing{" "}
-            <span className="font-medium">{peginationData.startIndex}</span> to{" "}
-            <span className="font-medium">{peginationData.endIndex}</span> of{" "}
-            <span className="font-medium">{peginationData.totalItems}</span>{" "}
+            <span className="font-medium">{paginationData.startIndex}</span> to{" "}
+            <span className="font-medium">{paginationData.endIndex}</span> of{" "}
+            <span className="font-medium">{paginationData.totalItems}</span>{" "}
             results
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function Pagination() {
               />
             </span>
 
-            {peginationData.pages.map((v, i) => {
+            {paginationData.pages.map((v, i) => {
               return (
                 <span
                   key={i}
@@ -80,13 +80,13 @@ export default function Pagination() {
               <ChevronRightIcon
                 className={
                   "h-5 w-5 " +
-                  (paginationNo === 11
+                  (paginationNo === paginationData.totalPages
                     ? "cursor-not-allowed"
                     : "cursor-pointer")
                 }
                 aria-hidden="true"
                 onClick={() => {
-                  if (paginationNo !== 11) {
+                  if (paginationNo !== paginationData.totalPages) {
                     paginateChange(paginationNo + 1);
                   }
                 }}
